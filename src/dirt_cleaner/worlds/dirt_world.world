@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="dirt_world">
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- WATER ZONE (blue) -->
+    <model name="water_zone">
+      <static>true</static>
+      <pose>1.0 0.0 0.001 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 0.3 0.9 1</ambient>
+            <diffuse>0.0 0.3 0.9 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- DIRT ZONE (yellow) -->
+    <model name="dirt_zone">
+      <static>true</static>
+      <pose>0.0 1.5 0.001 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.8 0.0 1</ambient>
+            <diffuse>0.9 0.8 0.0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- CARPET ZONE (brown) -->
+    <model name="carpet_zone">
+      <static>true</static>
+      <pose>-1.0 0.5 0.001 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 1.0 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.27 0.07 1</ambient>
+            <diffuse>0.55 0.27 0.07 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 1.0 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Trash pieces the vacuum can pick up -->
+    <include>
+      <uri>model://dirt_patch</uri>
+      <name>trash_1</name>
+      <pose>1.0 0.0 0.02 0 0 0.1</pose>
+    </include>
+
+    <include>
+      <uri>model://dirt_patch</uri>
+      <name>trash_2</name>
+      <pose>0.4 0.7 0.02 0 0 -0.35</pose>
+    </include>
+
+    <include>
+      <uri>model://dirt_patch</uri>
+      <name>trash_3</name>
+      <pose>1.6 -0.6 0.02 0 0 0.5</pose>
+    </include>
+
+  </world>
+</sdf>

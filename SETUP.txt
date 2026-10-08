@@ -1,0 +1,101 @@
+============================================================
+  SmartVacuum — Setup Guide
+  ROS2 Jazzy + Gazebo Harmonic
+============================================================
+
+REQUIREMENTS
+------------
+- Ubuntu 24.04 (or WSL2 with Ubuntu 24.04 on Windows)
+- ROS2 Jazzy installed
+- Gazebo Harmonic installed
+- Python 3.12
+- Git
+
+------------------------------------------------------------
+STEP 1 — Install ROS2 Jazzy (skip if already installed)
+------------------------------------------------------------
+Follow: https://docs.ros.org/en/jazzy/Installation.html
+
+Add to ~/.bashrc:
+  source /opt/ros/jazzy/setup.bash
+
+------------------------------------------------------------
+STEP 2 — Install TurtleBot3 workspace
+------------------------------------------------------------
+mkdir -p ~/turtlebot3_ws/src
+cd ~/turtlebot3_ws/src
+
+git clone -b jazzy https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone -b jazzy https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone -b jazzy https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+git clone -b jazzy https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+
+cd ~/turtlebot3_ws
+source /opt/ros/jazzy/setup.bash
+colcon build --symlink-install
+source install/setup.bash
+
+------------------------------------------------------------
+STEP 3 — Install Python dependencies
+------------------------------------------------------------
+pip3 install ultralytics --no-deps --break-system-packages
+
+pip3 install torch==2.2.0+cpu torchvision==0.17.0+cpu \
+  --index-url https://download.pytorch.org/whl/cpu \
+  --break-system-packages
+
+pip3 install ultralytics-thop polars --no-deps --break-system-packages
+
+------------------------------------------------------------
+STEP 4 — Clone and build SmartVacuum
+------------------------------------------------------------
+git clone https://github.com/Lxmokdr/SmartVacuum.git
+cd SmartVacuum
+
+source /opt/ros/jazzy/setup.bash
+source ~/turtlebot3_ws/install/setup.bash
+
+colcon build --symlink-install
+source install/setup.bash
+
+------------------------------------------------------------
+STEP 5 — Run the simulation
+------------------------------------------------------------
+source /opt/ros/jazzy/setup.bash
+source ~/turtlebot3_ws/install/setup.bash
+source install/setup.bash
+
+export TURTLEBOT3_MODEL=burger
+export LDS_MODEL=LDS-01
+
+ros2 launch dirt_cleaner smart_vacuum.launch.py
+
+------------------------------------------------------------
+WHAT TO EXPECT
+------------------------------------------------------------
+- Gazebo opens with the house world (my_house.sdf)
+- TurtleBot3 burger robot spawns in the house
+- Robot starts navigating and avoiding obstacles
+- Robot vacuums trash items when it gets close
+- Semantic detector identifies water, dirt, carpet surfaces
+- Dirt detector node waits for YOLO weights (see README for training)
+
+------------------------------------------------------------
+TROUBLESHOOTING
+------------------------------------------------------------
+Robot does not move?
+  -> Make sure TURTLEBOT3_MODEL=burger is exported before launch
+
+Gazebo does not open?
+  -> Make sure Gazebo Harmonic is installed: gz sim --version
+
+ultralytics not found?
+  -> Run: pip3 install ultralytics --no-deps --break-system-packages
+
+turtlebot3_gazebo not found?
+  -> Make sure ~/turtlebot3_ws is built and sourced
+
+colcon build fails?
+  -> Make sure /opt/ros/jazzy/setup.bash is sourced first
+
+============================================================

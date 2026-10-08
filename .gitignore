@@ -1,0 +1,9 @@
+build/
+install/
+log/
+__pycache__/
+*.pyc
+*.pdf
+*.gv
+structure.txt
+my_models/

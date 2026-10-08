@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "SmartVacuum — Autonomous Intelligent Robotic Vacuum Cleaner"
+message: "If you use this project in academic work, please acknowledge the student team and academic supervisor."
+type: software
+authors:
+  - given-names: "Iskender"
+    family-names: "Yahiaoui"
+  - given-names: "Lamia"
+    family-names: "Koudri"
+  - given-names: "Nourane"
+    family-names: "Bouchama"
+  - given-names: "Raihana Hiba"
+    family-names: "Bouray"
+  - given-names: "Manar"
+    family-names: "Bouras"
+  - given-names: "Nasr-Eddine"
+    family-names: "Mellah"
+    affiliation: "École Nationale Polytechnique d'Alger (ENP)"
+abstract: "Simulation-based autonomous robotic vacuum project using ROS 2 Jazzy, Gazebo Harmonic, TurtleBot3, SLAM, computer vision, YOLOv8 and systematic coverage planning."
+keywords:
+  - robotics
+  - ros2
+  - turtlebot3
+  - gazebo
+  - slam
+  - computer-vision
+  - yolov8
+  - autonomous-navigation
+  - coverage-planning
+  - mobile-robot

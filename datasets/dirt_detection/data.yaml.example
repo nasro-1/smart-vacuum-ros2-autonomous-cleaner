@@ -1,0 +1,6 @@
+path: /home/lxmix/turtlebot3_ws/datasets/dirt_detection
+train: images/train
+val: images/val
+
+names:
+  0: trash
